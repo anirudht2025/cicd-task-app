@@ -1,27 +1,39 @@
-Project Title: End-to-End CI/CD Pipeline with Monitoring on AWS
+# End-to-End CI/CD Pipeline with Monitoring on AWS
 
-I designed and implemented a production-style DevOps workflow that automates the application lifecycle from code commit to deployment and infrastructure monitoring.
+## Overview
+Designed and implemented a production-style DevOps workflow that automates the application lifecycle from code commit to container deployment and infrastructure monitoring.
 
-The project begins with a Node.js application hosted in a GitHub repository. GitHub Webhooks are configured to trigger a Jenkins Declarative Pipeline automatically on every code push. This eliminates manual intervention and ensures continuous integration.
+## Continuous Integration (CI)
+- Source code hosted on GitHub.
+- GitHub Webhooks configured to automatically trigger Jenkins on every code push.
+- Jenkins Declarative Pipeline stages:
+  - Code checkout from GitHub  
+  - Dependency installation using npm  
+  - Application build  
+  - Docker image creation using a Dockerfile  
+  - Dynamic image tagging using Jenkins build numbers  
+  - Secure push of Docker images to Docker Hub  
 
-The Jenkins pipeline performs the following stages:
-1. Source Code Checkout – Jenkins pulls the latest code from the GitHub repository.
-2. Dependency Installation – Required Node.js packages are installed using npm.
-3. Build and Containerization – A Docker image is built using a Dockerfile, packaging the application and its runtime environment.
-4. Image Versioning – The image is tagged dynamically using Jenkins build numbers to ensure traceable and reproducible builds.
-5. Image Push – The validated Docker image is pushed securely to Docker Hub using stored credentials.
+## Containerization and Deployment
+- Application packaged as a Docker container to ensure consistent runtime environments.
+- Docker container deployed on AWS EC2 for application hosting.
+- Kubernetes manifests (Deployment and Service YAML files) created and tested in a Minikube setup to demonstrate understanding of:
+  - Pod replicas  
+  - Rolling updates  
+  - Liveness and readiness probes  
+  - Service exposure using NodePort  
 
-For deployment, the application is executed as a Docker container on an AWS EC2 instance. Kubernetes manifests (Deployment and Service YAML files) were also created and tested in a Minikube environment to demonstrate understanding of container orchestration concepts such as replicas, rolling updates, health checks, and service exposure.
+## Monitoring and Observability
+- Node Exporter installed on EC2 to expose system-level metrics.
+- Prometheus configured to scrape infrastructure metrics such as CPU, memory, disk, and network usage.
+- Grafana integrated with Prometheus to visualize real-time dashboards for infrastructure health monitoring.
 
-Infrastructure observability was implemented using a monitoring stack:
-- Node Exporter was installed on the EC2 instance to expose system-level metrics including CPU, memory, disk, and network usage.
-- Prometheus was configured to scrape these metrics at regular intervals.
-- Grafana was integrated with Prometheus as a data source to visualize real-time dashboards, enabling infrastructure health monitoring.
+## Troubleshooting and Reliability
+- Handled real-world infrastructure issues including disk space exhaustion, container image pull failures, and network port configuration.
+- Gained practical experience in Linux system management, cloud resource handling, and DevOps troubleshooting.
 
-Throughout the project, real-world troubleshooting scenarios were handled, including disk space exhaustion, networking configuration, port exposure, and container image pull failures. This provided practical experience in cloud infrastructure debugging and system reliability practices.
-
-Key Technologies Used:
+## Technologies Used
 AWS EC2, Jenkins, GitHub Webhooks, Docker, Docker Hub, Kubernetes (Minikube), Prometheus, Grafana, Node Exporter, Linux.
 
-Skills Demonstrated:
-CI/CD pipeline automation, containerization, image versioning, cloud infrastructure setup, monitoring and observability, DevOps troubleshooting, and basic Kubernetes orchestration concepts.
+## Skills Demonstrated
+CI/CD automation, containerization, cloud deployment, monitoring setup, infrastructure troubleshooting, and Kubernetes orchestration fundamentals.
