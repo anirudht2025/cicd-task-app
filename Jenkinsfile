@@ -34,5 +34,17 @@ pipeline {
         }
       }
     }
+
+    stage('Deploy to Kubernetes') {
+      steps {
+        sh 'kubectl set image deployment/cicd-task-app cicd-task-app=$IMAGE_NAME'
+      }
+    }
+
+    stage('Verify Rollout') {
+      steps {
+        sh 'kubectl rollout status deployment/cicd-task-app'
+      }
+    }
   }
 }
