@@ -35,7 +35,13 @@ pipeline {
       }
     }
 
-    stage('Deploy to Kubernetes') {
+    stage('Apply Kubernetes Manifests') {
+      steps {
+        sh 'kubectl apply -f k8s-manifests/'
+      }
+    }
+
+    stage('Update Deployment Image') {
       steps {
         sh 'kubectl set image deployment/cicd-task-app cicd-task-app=$IMAGE_NAME'
       }
