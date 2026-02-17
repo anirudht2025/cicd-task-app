@@ -16,7 +16,8 @@ Designed and implemented a production-style DevOps workflow that automates the a
   - Docker image creation using a Dockerfile  
   - Dynamic image tagging using Jenkins build numbers  
   - Secure push of Docker images to Docker Hub using credential binding  
-  - Automated Kubernetes deployment update using `kubectl set image`  
+  - Automated Kubernetes manifest application using `kubectl apply`  
+  - Deployment image update using `kubectl set image`  
   - Rollout verification using `kubectl rollout status`  
 
 ### CI/CD Pipeline Execution
